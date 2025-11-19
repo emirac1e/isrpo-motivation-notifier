@@ -1,0 +1,62 @@
+{
+  "name": "motivation-notifier",
+  "displayName": "Motivation Notifier",
+  "description": "Плагин показывает мотивационные уведомления каждые X минут. Интервал и фразы настраиваются через Settings.",
+  "version": "0.0.1",
+  "publisher": "muslim-nafikov",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:motivationNotifier.toggle"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "motivationNotifier.toggle",
+        "title": "Toggle Motivation Notifier",
+        "category": "Motivation"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Motivation Notifier",
+      "properties": {
+        "motivationNotifier.intervalMinutes": {
+          "type": "number",
+          "default": 30,
+          "minimum": 1,
+          "description": "Интервал между мотивационными уведомлениями (в минутах)."
+        },
+        "motivationNotifier.phrases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "Сделай маленький шаг",
+            "Сохрани файл — сэкономишь нервную клетку",
+            "Не забудь пить воду"
+          ],
+          "description": "Список мотивационных фраз. Каждая строка — отдельное уведомление."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "echo \"No tests\""
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.15.0",
+    "typescript": "^5.6.0"
+  }
+}
